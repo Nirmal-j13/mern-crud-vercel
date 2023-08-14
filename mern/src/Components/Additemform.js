@@ -69,7 +69,7 @@ export default function Additemform()
         }
         else if(itemname.length>3&&itemdesc.length>15&&itemcatg.length>3)
         {
-        await fetch("http://localhost:8000/api/v5/users/register", {
+        await fetch(`https://mern-crud-vercel.vercel.app/api/v5/users/register`, {
         method: "POST",
         body: JSON.stringify({
              Itemname:itemname,

@@ -15,7 +15,7 @@ export default function Edititemform()
     const retrive=async()=>
     {
     try{
-      let res=await fetch(`http://localhost:8000/api/v5/users/retriveone/${id}`)
+      let res=await fetch(`https://mern-crud-vercel.vercel.app/api/v5/users/retriveone/${id}`)
       res=await res.json();
       console.warn(res);
       console.log(res.Item.Itemname);
@@ -75,7 +75,7 @@ export default function Edititemform()
            else if(itemname.length>3&&itemdesc.length>15&&itemcatg.length>3)
            {
             console.log(itemname);
-           let res= await fetch(`http://localhost:8000/api/v5/users/updateone/${id}`, {
+           let res= await fetch(`https://mern-crud-vercel.vercel.app/api/v5/users/updateone/${id}`, {
             method: "Put",
             body: JSON.stringify({
                  Itemname:itemname,
