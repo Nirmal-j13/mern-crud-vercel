@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.use(cors(
     {
-        origin:["mern-crud-vercel.vercel.app"],
+        origin:["mern-crud-vercel-frontend.vercel.app"],
         methods:["POST","GET"],
         credentials:true
     }
