@@ -9,7 +9,7 @@ export default function Homeform()
     const Deleteform=async(id)=>
     {
         window.location.reload(true);
-        await fetch('https://mern-crud-vercel.vercel.app/api/v5/users//deleteone/' + id, {
+        await fetch('https://mern-crud-vercel.vercel.app/api/v5/users/deleteone/' + id, {
             method: 'DELETE',
           })
           .then(res => res.text())
@@ -17,7 +17,7 @@ export default function Homeform()
     }
     useEffect(() => {
          fetch(
-            'https://mern-crud-vercel.vercel.app/api/v5/users/register/retriveall'
+            'https://mern-crud-vercel.vercel.app/api/v5/users/retriveall'
         ).then((res) => {
            console.log(res.json()
            .then((data)=>
