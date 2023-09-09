@@ -1,88 +1,106 @@
+
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 export default function Additemform() 
 {
-       const [itemname, setItemname] = useState("");
-       const [itemdesc, setItemdesc] = useState("");
-       const [itemcatg, setItemcatg] = useState("");
-       const [itemprc, setItemprc] = useState();
+       const [bookname, setbookname] = useState("");
+       const [bookauth, setbookauth] = useState("");
+       const [bookstart, setbookstart] = useState("");
+       const [bookend, setbookend] = useState("");
+       const [bookctg, setbookctg] = useState("");
        const Handlename=(event)=>
        {
-            setItemname(event.target.value);
+            setbookname(event.target.value);
               console.log(event.target.value);
        }
-       const Handledesc=(event)=>
+       const Handleauth=(event)=>
        {
-            setItemdesc(event.target.value);
+            setbookauth(event.target.value);
               console.log(event.target.value);
        }
-       const Handlecatg=(event)=>
+       const Handlestart=(event)=>
        {
-            setItemcatg(event.target.value);
+            setbookstart(event.target.value);
               console.log(event.target.value);
        }
-       const Handleprice=(event)=>
+       const Handleend=(event)=>
        {
-            setItemprc(event.target.value);
+            setbookend(event.target.value);
+              console.log(event.target.value);
+       }
+       const Handlectg=(event)=>
+       {
+            setbookctg(event.target.value);
               console.log(event.target.value);
        }
        const HandleSubmit=async(event)=>
        {
         try{
         event.preventDefault();
-        if(itemname.length<3)
+        if(bookname.length<3)
         {
               return(
                      <div>
-                        {toast.warn('ItemName must be greater than 3!', {
+                        {toast.warn('BookName must be greater than 3!', {
                      position: toast.POSITION.TOP_RIGHT
                        })}
                      </div>)
         }
-        if(itemdesc.length<15)
+        if(bookauth.length<3)
         {
               return(
                      <div>
-                        {toast.warn('ItemDescription  must be greater than 15 !', {
+                        {toast.warn('BookAuthor must be greater than 2 !', {
                      position: toast.POSITION.TOP_RIGHT
                        })}
                      </div>)
         }
-        if(itemcatg.length<3)
+        if(bookstart==null)
         {
               return(
                      <div>
-                        {toast.warn('ItemCategory  must be greater than 15 !', {
+                        {toast.warn('Start Date Required', {
                      position: toast.POSITION.TOP_RIGHT
                        })}
                      </div>)
         }
-        if(!Number(itemprc))
+        if(bookend==null)
         {
               return(
                      <div>
-                        {toast.warn('Itemprice  must be a number !', {
+                        {toast.warn('End Date Required', {
                      position: toast.POSITION.TOP_RIGHT
                        })}
                      </div>)
         }
-        else if(itemname.length>3&&itemdesc.length>15&&itemcatg.length>3)
+        if(bookctg.length<3)
         {
+              return(
+                     <div>
+                        {toast.warn('BookCategory  must be greater than 15 !', {
+                     position: toast.POSITION.TOP_RIGHT
+                       })}
+                     </div>)
+        }
+        if(bookname.length>3&&bookname.length>3&&bookctg.length>3&&bookstart!=null&&bookend!=null)
+        {
+        //https://mern-crud-vercel.vercel.app/api/v5/users/register
         await fetch(`https://mern-crud-vercel.vercel.app/api/v5/users/register`, {
         method: "POST",
         body: JSON.stringify({
-             Itemname:itemname,
-             Itemdesc:itemdesc,
-             Itemcatg:itemcatg,
-             Itemprc:itemprc
+             Bookname:bookname,
+             Bookauth:bookauth,
+             Bookstart:bookstart,
+             Bookend:bookend,
+             Bookctg:bookctg,
         }),   
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
     })
     .then(response => response.json())
-    .then(json => console.log(json)).then(()=>setItemname(""),setItemdesc(""),setItemcatg(""),setItemprc(""));
+    .then(json => console.log(json)).then(()=>setbookname(""),setbookauth(""),setbookstart(""),setbookend(""),setbookctg(""));
     return(
     <div>
        {toast.success('Successfully Added the Item !', {
@@ -99,50 +117,63 @@ export default function Additemform()
      return(
         <div class="... flex items-center justify-center">
         <form class="mt-6">
-        <h1 class="text-6xl font-bold 
+        <h1 class="text-4xl font-bold 
             bg-gradient-to-g bg-clip-text  
             from-green-500 via--500 to-indigo-500
             animate-text mb-5
             ">
-           Add the Item
+           Add Book
         </h1>
-        <label for="first_name" class="block mb-2 text-left text-sm font-medium text-black-900 light:text-white">Item Name</label>
+        <label for="first_name" class="block mb-2 text-left text-sm font-medium text-black-900 light:text-white">Book Name</label>
         <input 
-               type="text" placeholder="Item Name" 
+               type="text" placeholder="Book Name" 
                class="text-sm text-gray-base w-full 
                       mr-3 py-5 px-4 h-2 border 
                       border-gray-700 rounded mb-2"
-              value={itemname} 
+              value={bookname} 
               onChange={Handlename}
               required/>
-       <label for="first_name" class="block mb-2 text-left text-sm font-medium text-black-900 light:text-white">Item Description</label>
-<textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-black-900 bg-gray-50 rounded-lg border border-gray-700 focus:ring-blue-500 focus:border-blue-500 light:bg-gray-700 light:border-gray-600 light:placeholder-gray-400 light:text-white light:focus:ring-blue-500 light:focus:border-blue-500" placeholder="Item Description (Max 50-60 Characters)"
- value={itemdesc} 
- onChange={Handledesc}
- required/>
-    <label for="first_name" class="block mb-2 text-left text-sm font-medium text-black-900 light:text-white">Item Price</label>
-        <input 
-               type="number" placeholder="Item Name" 
+       <label for="first_name" class="block mb-2 text-left text-sm font-medium text-black-900 light:text-white">Book Author</label>
+       <input 
+               type="text" placeholder="Book Author" 
                class="text-sm text-gray-base w-full 
                       mr-3 py-5 px-4 h-2 border 
                       border-gray-700 rounded mb-2"
-              value={itemprc} 
-              onChange={Handleprice}
+              value={bookauth} 
+              onChange={Handleauth}
               required/>
-   <label for="first_name" class="block mb-2 text-left text-sm font-medium text-black-900 light:text-white">Item Category</label>
+  <label for="first_name" class="block mb-2 text-left text-sm font-medium text-black-900 light:text-white">Start Date</label>
+        <input 
+               type="text" placeholder="Start Date" 
+               class="text-sm text-gray-base w-full 
+                      mr-3 py-5 px-4 h-2 border 
+                      border-gray-700 rounded mb-2"
+              value={bookstart} 
+              onChange={Handlestart}
+              required/>
+   <label for="first_name" class="block mb-2 text-left text-sm font-medium text-black-900 light:text-white">End Date</label>
+        <input 
+               type="text" placeholder="End Date" 
+               class="text-sm text-gray-base w-full 
+                      mr-3 py-5 px-4 h-2 border 
+                      border-gray-700 rounded mb-2"
+              value={bookend} 
+              onChange={Handleend}
+              required/>
+   <label for="first_name" class="block mb-2 text-left text-sm font-medium text-black-900 light:text-white">Book Category</label>
          <input
-               type="text" placeholder="Category" 
+               type="text" placeholder="Book Category" 
                class="text-sm text-gray-base w-full 
                        mr-3 py-5 px-4 h-2 border 
                       border-gray-700 rounded mb-2"
-              onChange={Handlecatg}
-              value={itemcatg}  
+               value={bookctg} 
+              onChange={Handlectg} 
               required/>
        <button  class=" relative rounded px-5 py-2.5 overflow-hidden group bg-green-500 relative hover:bg-gradient-to-r hover:from-green-500 hover:to-green-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300"
        onClick={HandleSubmit}>
               <ToastContainer/>
 <span class="absolute right-0 w-8 h-32 -mt-12 mb-5 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-<span class="relative">Add Item</span>
+<span class="relative">Add Book</span>
 </button>
     </form>
     </div>

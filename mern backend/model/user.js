@@ -1,22 +1,26 @@
 const mongoose=require("mongoose");
 
 const userschema = mongoose.Schema({
-      Itemname:{
+      Bookname:{
         type:String,
         required:true,
       },
-      Itemdesc:{
+      Bookauth:{
         type:String,
         required:true,
       },
-      Itemcatg:{
+      Bookstart:{
         type:String,
         required:true,
       },
-      Itemprc:{
-        type:Number,
+      Bookend:{
+        type:String,
         required:true,
-      }
+      },
+      Bookctg:{
+        type:String,
+        required:true,
+      },
     },
     {
       timestamps:true,

@@ -7,10 +7,11 @@ export default function Homeform()
 {
     let navigate=useNavigate();
     const [search, setSearch] = useState("");
-    const [Items, setItems] = useState([]);
+    const [Books, setbooks] = useState([]);
     const Deleteform=async(id)=>
     {
         window.location.reload(true);
+        //https://mern-crud-vercel.vercel.app/api/v5/users/deleteone/
         await fetch('https://mern-crud-vercel.vercel.app/api/v5/users/deleteone/' + id, {
             method: 'DELETE',
           })
@@ -25,7 +26,7 @@ export default function Homeform()
            .then((data)=>
            {
             console.log(data);
-            setItems(data.Items);
+            setbooks(data.Book);
            }
         ))})},[]);
     return (
@@ -50,16 +51,19 @@ export default function Homeform()
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Item ID
+                    Book ID
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Item name
+                    Book Name
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Item Description
+                    Book Author
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    $ Item Price
+                    Start Date
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    End Date
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Category
@@ -70,9 +74,9 @@ export default function Homeform()
             </tr>
         </thead>
         <tbody>
-        {Items
+        {Books
             .filter((val) => {
-                        return val.Itemname.toLowerCase().includes(search.toLowerCase());
+                        return val.Bookname.toLowerCase().includes(search.toLowerCase());
                     })
                     .map((val, id) => {
                         //const appid=val._id;
@@ -83,16 +87,19 @@ export default function Homeform()
                    {new String(val._id).substring(0,8)}
                 </th>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                   {val.Itemname}
+                   {val.Bookname}
                 </th>
                 <th scope="row" class="box-content h-12 w-32 font-medium dark:text-white">
-                   {val.Itemdesc}
+                   {val.Bookauth}
                 </th>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                   $ {val.Itemprc}
+                    {val.Bookstart}
                 </th>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {val.Itemcatg}
+                    {val.Bookend}
+                </th>
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {val.Bookctg}
                 </th>
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <Link to={"/Edititemform/"+val._id}

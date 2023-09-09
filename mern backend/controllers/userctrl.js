@@ -3,32 +3,35 @@ const User=require("../model/user");
 //Register the item
 const register =async (req,res)=>
 {
-  const Itemname=req.body.Itemname;
-  const Itemdesc=req.body.Itemdesc;
-  const Itemcatg=req.body.Itemcatg;
-  const Itemprc=req.body.Itemprc;
+  const Bookname=req.body.Bookname;
+  const Bookauth=req.body.Bookauth;
+  const Bookstart=req.body.Bookstart;
+  const Bookend=req.body.Bookend;
+  const Bookctg=req.body.Bookctg;
   //console.log(Name+" "+Age);
   try
   {
      const user=await User.create({
-        Itemname,
-        Itemdesc,
-        Itemcatg,
-        Itemprc
+        Bookname,
+        Bookauth,
+        Bookstart,
+        Bookend,
+        Bookctg
      });
      res.json({
         status:"Succees",
-        ItemName:user.Itemname,
-        Itemdesc:user.Itemdesc,
-        Itemcatg:user.Itemcatg,
-        Itemname:user.Itemprc,
+        Bookname:user.Bookname,
+        Bookauth:user.Bookauth,
+        Bookstart:user.Bookstart,
+        Bookend:user.Bookend,
+        Bookctg:user.Bookctg,
      });
  }
  catch(err)
  {
     res.json( 
     {
-       status:"Failed",
+       status:"failed",
        data:err  
     })
  }
@@ -38,11 +41,11 @@ const register =async (req,res)=>
 const retriveall=async(req,res)=>
 {
    try{
-   const retriveitems=await User.find();
+   const retrivebooks=await User.find();
    res.json(
       {
          status:"Success",
-         Items:retriveitems,
+         Book:retrivebooks,
       }
    )
    }
@@ -61,13 +64,13 @@ const retriveall=async(req,res)=>
 const updateone=async(req,res)=>{
    try{
       const {id}=req.params;
-      const Item=await User.findByIdAndUpdate(id,req.body,{
+      const Book=await User.findByIdAndUpdate(id,req.body,{
          new:true,
          runValidators:true
       })
       res.json({
          status:"Success",
-         Item: Item
+         Book: Book
       })
    }
    catch(err)
@@ -91,13 +94,13 @@ const deleteone=async(req,res)=>{
 const retriveone=async(req,res)=>{
    try{
       const id=req.params.id;
-      const Item=await User.findById(id,req.body,{
+      const Book=await User.findById(id,req.body,{
          new:true,
          runValidators:true
       })
       res.json({
          status:"Success",
-         Item:Item
+         Book:Book
       })
    }
    catch(err)
