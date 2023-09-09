@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ContentLoader from "react-content-loader";
 export default function Homeform()
 {
+    //box-content h-12 w-32 font-medium dark:text-white
     let navigate=useNavigate();
     const [search, setSearch] = useState("");
     const [Books, setbooks] = useState([]);
@@ -89,7 +90,6 @@ export default function Homeform()
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                    {val.Bookname}
                 </th>
-                //box-content h-12 w-32 font-medium dark:text-white
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                    {val.Bookauth}
                 </th>
