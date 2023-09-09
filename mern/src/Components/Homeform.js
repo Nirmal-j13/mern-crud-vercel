@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Loader, { RotatingSquare } from "react-loader-spinner";
 import 'react-toastify/dist/ReactToastify.css';
+import ContentLoader from "react-content-loader";
 export default function Homeform()
 {
     let navigate=useNavigate();
@@ -107,7 +109,10 @@ export default function Homeform()
             </tr>
             </>
             );
-        })}
+                        }
+                    )
+}
+                    
         </tbody>
     </table>
 </div>
