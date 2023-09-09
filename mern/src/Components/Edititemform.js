@@ -5,8 +5,8 @@ export default function Edititemform()
 {
    const [bookname, setbookname] = useState("");
    const [bookauth, setbookauth] = useState("");
-   const [bookstart, setbookstart] = useState("");
-   const [bookend, setbookend] = useState("");
+   const [bookstart, setbookstart] = useState(new Date());
+   const [bookend, setbookend] = useState(new Date());
    const [bookctg, setbookctg] = useState("");
     const {id}=useParams();
     console.log(id);
@@ -101,7 +101,7 @@ export default function Edititemform()
        }
     return(
         <div class="... flex items-center justify-center">
-        <form class="mt-6">
+        <form class="mt-4">
         <h1 class="text-4xl font-bold 
             bg-gradient-to-g bg-clip-text  
             from-green-500 via--500 to-indigo-500
@@ -126,23 +126,21 @@ export default function Edititemform()
               onChange={(e)=>setbookauth(e.target.value)}
               required/>
       <label for="first_name" class="block mb-2 text-left text-sm font-medium text-black-900 light:text-white">Start Date</label>
-        <input 
-               type="text" placeholder="Item Name" 
-               class="text-sm text-gray-base w-full 
-                      mr-3 py-5 px-4 h-2 border 
-                      border-gray-700 rounded mb-2"
-              value={bookstart} 
-              onChange={(e)=>setbookstart(e.target.value)}
-              required/>
+      <input
+                    name="date"
+                    value={bookstart}
+                    onChange={(e)=>setbookstart(e.target.value)}
+                    type="date"
+                    className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  />
    <label for="first_name" class="block mb-2 text-left text-sm font-medium text-black-900 light:text-white">End Date</label>
-        <input 
-               type="text" placeholder="Item Name" 
-               class="text-sm text-gray-base w-full 
-                      mr-3 py-5 px-4 h-2 border 
-                      border-gray-700 rounded mb-2"
-              value={bookend} 
-              onChange={(e)=>setbookend(e.target.value)}
-              required/>
+   <input
+                    name="date"
+                    value={bookend}
+                    onChange={(e)=>setbookend(e.target.value)}
+                    type="date"
+                    className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  />
    <label for="first_name" class="block mb-2 text-left text-sm font-medium text-black-900 light:text-white">Book Category</label>
          <input
                type="text" placeholder="Category" 
