@@ -8,11 +8,11 @@ export const SendMail = () => {
   
   const onHandleEmailId=(e)=>{
      setemailid(e.target.value);
-    console.log(emailid);
+    //console.log(emailid);
   }
   const onHandleRecipent=(e)=>{
     setrecipent(e.target.value);
-   console.log(recipient);
+   //console.log(recipient);
  }
   const onHandleEmailform=async(e)=>
   {
