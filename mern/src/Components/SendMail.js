@@ -34,7 +34,7 @@ export const SendMail = () => {
       {
         //console.log(emailid);
         //emailjs.sendForm('service_id','template_id',e.target,'public_key')
-       await fetch("http://localhost:8000/send-email",{
+       await fetch("https://mern-crud-vercel-frontend.vercel.app/send-email",{
           method:"POST",
           body:JSON.stringify({
             Email:emailid,
