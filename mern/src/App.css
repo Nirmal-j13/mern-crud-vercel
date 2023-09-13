@@ -1,3 +1,57 @@
+.form 
+{
+  display:flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: whitesmoke;
+}
+.form-child 
+{
+  align-items: center;
+  display: flex;
+  position:absolute;
+  flex-direction: column;
+  top: 27%;
+  height: 350px;
+  width: 400px;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 2px 2px 22px 2px rgb(0, 168, 247);
+  animation-name: move;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+label{
+  font-weight: bold;
+  font-size: medium;
+  display: flex;
+  justify-content: flex-start;
+}
+input
+{
+  padding-left: 3px;
+}
+.EmailId 
+{
+  margin-top: 10%;
+}
+@keyframes move 
+{
+  0%{box-shadow: 2px 2px 22px 2px rgb(0, 168, 247);}
+  25%{box-shadow: 2px 2px 22px 2px rgb(1, 242, 255);}
+  50%{box-shadow: 2px 2px 22px 2px rgb(132, 24, 255);}
+  75%{box-shadow: 2px 2px 22px 2px rgb(255, 38, 255);}
+  100%{box-shadow: 2px 2px 22px 2px rgb(255, 2, 95);}
+}
+.sendmail 
+{
+  color:black;
+  position: absolute;
+  top:19%;
+  font-size: 23px;
+  font-weight: bolder;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 .App {
   text-align: center;
 }
